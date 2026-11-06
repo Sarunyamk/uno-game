@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#6842e8" />
+    <title>UNO Party Arena — Interactive HTML Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar" id="topbar">
+        <button class="brand" data-go="home" aria-label="หน้าแรก">
+          <span class="logo"
+            ><strong>UNO</strong><span>PARTY</span><small>ARENA</small></span
+          >
+        </button>
+        <div class="top-actions">
+          <button class="icon" id="soundBtn" aria-label="เปิดปิดเสียง">
+            🔊</button
+          ><button class="icon" data-modal="settings" aria-label="ตั้งค่า">
+            ⚙
+          </button>
+        </div>
+      </header>
+      <main class="screen screen--center home active" data-screen="home">
+        <i class="float-shape fs1"></i><i class="float-shape fs2"></i
+        ><i class="float-shape fs3"></i>
+        <section class="hero">
+          <div class="logo big"><strong>FUN UNO</strong><span>PARTY ARENA</span></div>
+          <div class="hero-card-stack" aria-hidden="true">
+            <div class="card blue hero-card h-left"><span class="corner">↻</span><div class="face"><b>↻</b></div></div>
+            <div class="card red hero-card h-right"><span class="corner">5</span><div class="face"><b>5</b></div></div>
+            <div class="card wild hero-card h-main"><span class="corner">+4</span><div class="face"><b>+4</b></div></div>
+          </div>
+          <div class="hero-cast" id="heroCast"></div>
+          <span class="eyebrow hero-kicker">เกมไพ่ปาร์ตี้สุดมันส์</span>
+          <h1>พร้อมสนุก<br /><em>ไปด้วยกันไหม?</em></h1>
+          <div class="hero-actions">
+            <button class="btn secondary lg" data-go="avatar"><span class="btn-symbol">＋</span><span><small>เป็นเจ้าของห้อง</small>สร้างห้องเล่น</span><b>›</b></button>
+            <button class="btn info lg" data-go="join"><span class="btn-symbol">→</span><span><small>มีรหัสห้องแล้ว</small>เข้าร่วมเกม</span><b>›</b></button>
+          </div>
+          <p class="mock-note">เล่นได้ 2–10 คน • สนุกได้ทุกที่</p>
+        </section>
+      </main>
+      <main class="screen portrait" data-screen="avatar">
+        <button class="back" data-go="home">← กลับ</button>
+        <div class="title">
+          <span class="eyebrow">เลือกคู่หูของคุณ</span>
+          <h1>ใครจะลงสนาม?</h1>
+          <p>เลือกตัวละครที่ใช่ แล้วตั้งชื่อให้จำง่าย</p>
+        </div>
+        <section class="avatar-stage">
+          <div id="avatarPreview"></div>
+          <h2 id="avatarTitle"></h2>
+        </section>
+        <label class="field"
+          >ชื่อในเกม
+          <div class="input">
+            <span>♙</span
+            ><input id="nickname" maxlength="16" value="ChefNeko" /><small
+              id="nameCount"
+              >8/16</small
+            >
+          </div></label
+        >
+        <div class="avatar-grid" id="avatarGrid"></div>
+        <div class="footer-actions">
+          <button class="btn white" id="randomAvatar">⤨ สุ่มให้ฉัน</button
+          ><button class="btn" data-go="create">ไปต่อ →</button>
+        </div>
+      </main>
+      <main class="screen portrait create" data-screen="create">
+        <button class="back" data-go="avatar">←</button>
+        <div class="title mobile-title"><span class="eyebrow">ตั้งค่าห้อง</span><h1>สร้างห้องเล่น</h1></div>
+        <div class="create-table-visual" id="createTableCast"></div>
+        <section class="panel form-card">
+          <label class="field"
+            >ชื่อห้อง
+            <div class="input">
+              ><input
+                id="roomName"
+                value="ปาร์ตี้บ้านเรา"
+                maxlength="24"
+              /></div
+          ></label>
+          <div class="row">
+            <div><b>จำนวนผู้เล่น</b><small>คนที่เข้ามาเกินจะเป็นผู้ชมอัตโนมัติ</small></div>
+            <div class="stepper">
+              <button data-step="-1">−</button><strong id="capacity">5</strong
+              ><button data-step="1">＋</button>
+            </div>
+          </div>
+          <div class="row"><div><b>กติกาพื้นฐาน</b><small>จั่ว 1 ใบเมื่อไม่มีไพ่ลง</small></div><strong class="rule-pill">คลาสสิก</strong></div>
+          <div class="row">
+            <div><b>ลงไพ่ +2 ต่อกันได้</b><small>เพิ่มความมันส์ให้ปาร์ตี้</small></div>
+            <button class="toggle on" data-toggle><i></i></button>
+          </div>
+          <div class="row">
+            <div><b>จั่วจนกว่าจะลงได้</b><small>House Rule</small></div>
+            <button class="toggle" data-toggle><i></i></button>
+          </div>
+          <button class="btn secondary lg" id="createRoom">สร้างห้องเลย <b>›</b></button>
+        </section>
+      </main>
+      <main class="screen screen--center" data-screen="join">
+        <button class="back" data-go="home">← กลับ</button>
+        <section class="join-box">
+          <div class="join-cast" id="joinCast"></div>
+          <div class="title">
+            <span class="eyebrow">เพื่อนรออยู่!</span>
+            <h1>ใส่รหัสห้อง</h1>
+            <p>ลองรหัส Demo 7749</p>
+          </div>
+          <div class="code-input" id="codeBoxes">
+            <span>7</span><span>7</span><span>4</span><span>9</span
+            ><input
+              id="roomCode"
+              value="7749"
+              inputmode="numeric"
+              maxlength="4"
+            />
+          </div>
+          <button class="btn lg" id="joinRoom">↪ เข้าห้อง 7749</button>
+          <p class="mock-note">
+            Demo Mode: เปิดห้องจำลองบนอุปกรณ์นี้ ไม่ซิงก์ข้ามอุปกรณ์
+          </p>
+        </section>
+      </main>
+      <main class="screen lobby" data-screen="lobby">
+        <button class="back" data-go="home">← ออกจากห้อง</button>
+        <div class="lobby-head">
+          <div>
+            <span class="eyebrow">ห้องของ ChefNeko</span>
+            <h1 id="lobbyName">ปาร์ตี้บ้านเชฟ</h1>
+            <p>● พร้อมเริ่มเกม • รหัส <span class="room-code">7749</span></p>
+          </div>
+          <button class="btn secondary" data-modal="invite">↗ ชวนเพื่อน</button>
+        </div>
+        <section class="panel lobby-table">
+          <div class="table-center-label">
+            <div class="logo"><strong>UNO</strong><span>PARTY</span></div>
+            <strong id="seatCount">5/5</strong><small>ผู้เล่นพร้อม</small>
+          </div>
+          <div class="seats" id="playerSeats"></div>
+        </section>
+        <section class="spectator">
+          <header>
+            <h2>◉ โซนผู้ชม <small id="specCount">2 คน</small></h2>
+            <button class="btn white" id="addBot">＋ เพิ่ม Bot จำลอง</button>
+          </header>
+          <div class="spectator-list" id="spectatorList"></div>
+        </section>
+        <footer class="lobby-foot">
+          <span>🔓 ห้องเปิด • คนใหม่จะเป็นผู้ชมเมื่อที่นั่งเต็ม</span
+          ><button class="btn lg" id="startGame">🎮 เริ่มเกม!</button>
+        </footer>
+      </main>
+      <main class="screen game" data-screen="game">
+        <div class="game-hud">
+          <button class="brand" data-modal="pause">
+            <span class="logo"><strong>UNO</strong><span>PARTY</span></span>
+          </button>
+          <div class="turn-pill" id="turnPill">● <b>ChefNeko</b> กำลังเล่น</div>
+          <button class="icon" data-modal="pause">☰</button>
+        </div>
+        <section class="table">
+          <div class="felt"></div>
+          <div class="opponents" id="opponents"></div>
+          <div class="center-piles">
+            <div class="pile">
+              <div id="drawPile"></div>
+              <small id="deckCount">80 ใบ</small>
+            </div>
+            <div class="pile">
+              <div id="discard"></div>
+              <small>กองทิ้ง</small>
+            </div>
+          </div>
+          <div class="color-now c-red" id="currentColor"><i></i>สีปัจจุบัน</div>
+        </section>
+        <section class="local-dock">
+          <div class="local-user" id="localUser"></div>
+          <div class="hand" id="playerHand"></div>
+          <div class="game-actions">
+            <button class="btn yellow" id="unoBtn" disabled>UNO!</button
+            ><button class="btn secondary" id="drawBtn">＋ จั่วไพ่</button>
+          </div>
+        </section>
+        <div class="toast hidden" id="toast"></div>
+        <div class="uno-burst hidden" id="unoBurst">UNO!</div>
+      </main>
+      <main class="screen screen--center result" data-screen="result">
+        <section>
+          <div class="trophy">🏆</div>
+          <span class="eyebrow">ผู้ชนะของรอบนี้</span>
+          <h1 id="winnerName">ChefNeko</h1>
+          <div id="winnerAvatar"></div>
+          <div class="panel rank">
+            <h2>อันดับผู้เล่น</h2>
+            <div id="ranking"></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn lg" id="rematch">↻ เล่นอีกครั้ง</button
+            ><button class="btn secondary lg" data-go="lobby">
+              ♙ กลับล็อบบี้
+            </button>
+          </div>
+        </section>
+      </main>
+      <div class="overlay hidden" id="modal-settings">
+        <section class="modal">
+          <div class="modal-head">
+            <h2>ตั้งค่า</h2>
+            <button class="close" data-close>×</button>
+          </div>
+          <div class="row">
+            <div><b>เสียงประกอบ</b><small>จำลองสถานะใน prototype</small></div>
+            <button class="toggle on" id="soundToggle"><i></i></button>
+          </div>
+          <div class="row">
+            <div>
+              <b>ลดการเคลื่อนไหว</b
+              ><small>ระบบจะเคารพ prefers-reduced-motion</small>
+            </div>
+            <strong>อัตโนมัติ</strong>
+          </div>
+        </section>
+      </div>
+      <div class="overlay hidden" id="modal-invite">
+        <section class="modal invite">
+          <div class="modal-head">
+            <h2>ชวนเพื่อนเข้าปาร์ตี้</h2>
+            <button class="close" data-close>×</button>
+          </div>
+          <div class="qr" aria-label="QR placeholder for demo URL"></div>
+          <span>รหัสห้อง</span>
+          <h1 class="room-code">7749</h1>
+          <div class="copybox">
+            <code id="inviteUrl"></code><button id="copyLink">⧉</button>
+          </div>
+          <button class="btn" id="copyLink2">⧉ คัดลอกลิงก์</button>
+          <button class="btn secondary" id="shareLine">LINE แชร์</button>
+          <p class="mock-note">
+            ลิงก์นี้เปิด Demo Join Flow เท่านั้น ไม่ใช่ multiplayer จริง
+          </p>
+        </section>
+      </div>
+      <div class="overlay hidden" id="modal-pause">
+        <section class="modal">
+          <div class="modal-head">
+            <h2>พักเกม</h2>
+            <button class="close" data-close>×</button>
+          </div>
+          <p>Bot จะหยุดระหว่างเปิดเมนูนี้</p>
+          <button class="btn" data-close>เล่นต่อ</button>
+          <button class="btn danger" data-go="lobby">กลับล็อบบี้</button>
+        </section>
+      </div>
+      <div class="overlay hidden" id="wildPicker">
+        <section class="modal wild-picker">
+          <h2>เลือกสีต่อไป!</h2>
+          <p>พลัง Wild อยู่ในมือคุณ</p>
+          <div class="wild-options">
+            <button class="c-red" data-color="red"><i></i>แดง</button
+            ><button class="c-yellow" data-color="yellow"><i></i>เหลือง</button
+            ><button class="c-green" data-color="green"><i></i>เขียว</button
+            ><button class="c-blue" data-color="blue"><i></i>น้ำเงิน</button>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="prototype.js"></script>
+  </body>
+</html>
