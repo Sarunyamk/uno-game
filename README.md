@@ -4,6 +4,7 @@
 
 ## เปิดดู
 
+- เปิด `index.html` เพื่อเลือกว่าจะดู Prototype หรือ Design System
 - เปิด `design-system.html` เพื่อดู tokens, typography, controls, cards และ avatars
 - เปิด `prototype.html` เพื่อทดลอง flow และเล่นกับ Bot
 - ออกแบบแบบ mobile-first สำหรับหน้าจอแนวตั้ง 9:16 และยังเปิดบน desktop ได้

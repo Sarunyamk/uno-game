@@ -4,12 +4,263 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#6842e8" />
-    <meta http-equiv="refresh" content="0; url=./prototype.html" />
-    <title>UNO Party Arena</title>
-    <link rel="canonical" href="./prototype.html" />
+    <meta
+      name="description"
+      content="UNO Party Arena — เลือกดู Interactive Prototype หรือ Design System"
+    />
+    <title>UNO Party Arena — Project Hub</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .hub {
+        min-height: 100svh;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        padding: 42px 24px;
+        color: #fff;
+        background:
+          radial-gradient(
+            circle at 100% 22%,
+            #e65ac74d 0 18%,
+            transparent 18.2%
+          ),
+          radial-gradient(circle at 0 86%, #3bc3eb3d 0 25%, transparent 25.2%),
+          linear-gradient(145deg, #a57bff, #7045e8 52%, #4e2bc3);
+      }
+      .hub::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.16;
+        background-image: radial-gradient(#fff 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+      .hub-shell {
+        width: min(1050px, 100%);
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+      .hub-logo {
+        margin-bottom: 18px;
+      }
+      .hub-logo .logo.big {
+        margin: 0;
+      }
+      .hub-copy {
+        color: #ffffffc9;
+        max-width: 600px;
+        margin: 10px auto 30px;
+      }
+      .hub-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+      .hub-card {
+        min-height: 330px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 28px;
+        border: 2px solid #ffffff5c;
+        border-radius: 32px;
+        color: var(--text);
+        background: #fffffff2;
+        box-shadow:
+          0 12px 0 #34207866,
+          0 25px 55px #29146255;
+        text-decoration: none;
+        transition:
+          transform 0.22s var(--bounce),
+          box-shadow 0.22s;
+      }
+      .hub-card:hover {
+        transform: translateY(-7px) rotate(-0.4deg);
+        box-shadow:
+          0 17px 0 #34207866,
+          0 32px 65px #29146266;
+      }
+      .hub-card:nth-child(2):hover {
+        transform: translateY(-7px) rotate(0.4deg);
+      }
+      .hub-card::after {
+        content: '';
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        right: -62px;
+        top: -70px;
+        background: var(--card-accent);
+        opacity: 0.16;
+      }
+      .hub-card.prototype {
+        --card-accent: var(--s);
+      }
+      .hub-card.system {
+        --card-accent: var(--info);
+      }
+      .hub-icon {
+        width: 72px;
+        height: 72px;
+        display: grid;
+        place-items: center;
+        border-radius: 23px;
+        color: #fff;
+        font: 800 2rem Kanit;
+        background: var(--card-accent);
+        box-shadow:
+          inset 0 3px #ffffff66,
+          0 7px 0 color-mix(in srgb, var(--card-accent), #000 28%);
+      }
+      .hub-tag {
+        margin: 25px 0 7px;
+        color: var(--card-accent);
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .hub-card h2 {
+        font-size: clamp(1.7rem, 3vw, 2.35rem);
+        margin-bottom: 8px;
+      }
+      .hub-card p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+      .hub-link {
+        margin-top: auto;
+        width: 100%;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        border-radius: 18px;
+        color: #fff;
+        background: var(--card-accent);
+        font: 700 1rem Kanit;
+        box-shadow:
+          inset 0 2px #ffffff55,
+          0 6px 0 color-mix(in srgb, var(--card-accent), #000 28%);
+      }
+      .hub-link b {
+        font-size: 1.7rem;
+      }
+      .hub-foot {
+        margin-top: 28px;
+        font-size: 0.72rem;
+        color: #ffffffa6;
+      }
+      .hub-spark {
+        position: absolute;
+        color: var(--a);
+        font-size: 2rem;
+        animation: float 3s ease-in-out infinite;
+      }
+      .spark-1 {
+        left: 5%;
+        top: 16%;
+      }
+      .spark-2 {
+        right: 7%;
+        bottom: 18%;
+        animation-delay: -1.4s;
+      }
+      @media (max-width: 700px) {
+        .hub {
+          padding: 30px 18px;
+          align-items: start;
+        }
+        .hub-logo .logo.big strong {
+          font-size: 2.7rem;
+          text-shadow:
+            -3px -3px var(--danger),
+            3px 3px var(--p);
+        }
+        .hub-logo .logo.big span {
+          font-size: 0.78rem;
+        }
+        .hub-copy {
+          font-size: 0.86rem;
+          margin-bottom: 22px;
+        }
+        .hub-options {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .hub-card {
+          min-height: 245px;
+          padding: 20px;
+          border-radius: 25px;
+        }
+        .hub-icon {
+          width: 58px;
+          height: 58px;
+          border-radius: 18px;
+          font-size: 1.5rem;
+        }
+        .hub-tag {
+          margin-top: 18px;
+        }
+        .hub-card h2 {
+          font-size: 1.55rem;
+        }
+        .hub-card p {
+          font-size: 0.78rem;
+          margin-bottom: 17px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <p>กำลังเปิด <a href="./prototype.html">UNO Party Arena</a>…</p>
-    <script>location.replace('./prototype.html' + location.hash);</script>
+    <main class="hub">
+      <span class="hub-spark spark-1" aria-hidden="true">✦</span
+      ><span class="hub-spark spark-2" aria-hidden="true">✦</span>
+      <section class="hub-shell">
+        <header class="hub-logo">
+          <div class="logo big">
+            <strong>FUN UNO</strong><span>PARTY ARENA</span>
+          </div>
+          <p class="hub-copy">
+            เลือกสิ่งที่ต้องการสำรวจ — ทดลองเล่นเกมแบบ interactive
+            หรือดูรากฐานการออกแบบและ components ทั้งหมด
+          </p>
+        </header>
+        <nav class="hub-options" aria-label="เลือกเนื้อหา">
+          <a class="hub-card prototype" href="./prototype.html"
+            ><span class="hub-icon" aria-hidden="true">▶</span
+            ><span class="hub-tag">Playable experience</span>
+            <h2>Interactive Prototype</h2>
+            <p>
+              ทดลอง flow ตั้งแต่เลือกตัวละคร สร้างห้อง จัดการผู้เล่น
+              ไปจนถึงเล่นไพ่กับ Bot และจบการแข่งขัน
+            </p>
+            <span class="hub-link">เปิด Prototype <b>›</b></span></a
+          >
+          <a class="hub-card system" href="./design-system.html"
+            ><span class="hub-icon" aria-hidden="true">✦</span
+            ><span class="hub-tag">Visual foundation</span>
+            <h2>Design System</h2>
+            <p>
+              สำรวจ color tokens, typography, buttons, controls, playing cards,
+              avatars, motion และ component states
+            </p>
+            <span class="hub-link">ดู Design System <b>›</b></span></a
+          >
+        </nav>
+        <footer class="hub-foot">
+          UNO Party Arena • Static HTML Prototype
+        </footer>
+      </section>
+    </main>
   </body>
 </html>
