@@ -41,6 +41,7 @@
             <button class="btn info lg" data-go="join"><span class="btn-symbol">→</span><span><small>มีรหัสห้องแล้ว</small>เข้าร่วมเกม</span><b>›</b></button>
           </div>
           <p class="mock-note">เล่นได้ 2–10 คน • สนุกได้ทุกที่</p>
+          <a class="hub-home-link" href="./index.html">← กลับหน้า Project Hub</a>
         </section>
       </main>
       <main class="screen portrait" data-screen="avatar">
@@ -75,15 +76,9 @@
         <div class="title mobile-title"><span class="eyebrow">ตั้งค่าห้อง</span><h1>สร้างห้องเล่น</h1></div>
         <div class="create-table-visual" id="createTableCast"></div>
         <section class="panel form-card">
-          <label class="field"
-            >ชื่อห้อง
-            <div class="input">
-              ><input
-                id="roomName"
-                value="ปาร์ตี้บ้านเรา"
-                maxlength="24"
-              /></div
-          ></label>
+          <label class="field">ชื่อห้อง
+            <div class="input"><input id="roomName" value="ปาร์ตี้บ้านเรา" maxlength="24" /></div>
+          </label>
           <div class="row">
             <div><b>จำนวนผู้เล่น</b><small>คนที่เข้ามาเกินจะเป็นผู้ชมอัตโนมัติ</small></div>
             <div class="stepper">
@@ -91,14 +86,14 @@
               ><button data-step="1">＋</button>
             </div>
           </div>
-          <div class="row"><div><b>กติกาพื้นฐาน</b><small>จั่ว 1 ใบเมื่อไม่มีไพ่ลง</small></div><strong class="rule-pill">คลาสสิก</strong></div>
+          <div class="row"><div><b>กติกาพื้นฐาน</b><small>จั่ว 1 ใบ และลงไพ่ที่จั่วได้ทันที</small></div><strong class="rule-pill">มาตรฐาน</strong></div>
           <div class="row">
-            <div><b>ลงไพ่ +2 ต่อกันได้</b><small>เพิ่มความมันส์ให้ปาร์ตี้</small></div>
-            <button class="toggle on" data-toggle><i></i></button>
+            <div><b>Stack +2 / +4</b><small>กติกามาตรฐานไม่อนุญาตให้ Stack</small></div>
+            <strong class="rule-pill">ปิด</strong>
           </div>
           <div class="row">
-            <div><b>จั่วจนกว่าจะลงได้</b><small>House Rule</small></div>
-            <button class="toggle" data-toggle><i></i></button>
+            <div><b>Wild +4</b><small>ลงได้เมื่อไม่มีไพ่สีปัจจุบันในมือ</small></div>
+            <strong class="rule-pill">มาตรฐาน</strong>
           </div>
           <button class="btn secondary lg" id="createRoom">สร้างห้องเลย <b>›</b></button>
         </section>
@@ -189,6 +184,7 @@
         </section>
         <div class="toast hidden" id="toast"></div>
         <div class="uno-burst hidden" id="unoBurst">UNO!</div>
+          <div class="winner-burst hidden" id="winnerBurst"><small>ลงไพ่ใบสุดท้าย!</small><strong id="winnerBurstName"></strong><span>ชนะรอบนี้ 🏆</span></div>
       </main>
       <main class="screen screen--center result" data-screen="result">
         <section>
